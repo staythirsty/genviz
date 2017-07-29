@@ -1,0 +1,299 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
+        <link href="/libs/bootstrap-colorselector/bootstrap-colorselector.min.css" rel="stylesheet">
+
+        <script src="/libs/bootstrap-colorselector/bootstrap-colorselector.min.js"></script>
+
+
+
+        <style>
+            .controls-container > div{
+                padding: 10px;
+            }
+            .control-label{
+                display: inline-block;
+            }
+            .control-widget{
+                display: inline-block;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <h1>SVG widgets</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default center-block text-center">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Semi Circular Speedometer</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <div id="speedometer-svg-container">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <input  id="scsVizURL" type="text" class="form-control" placeholder="url">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-secondary" data-clipboard-target="#scsVizURL" type="button">Copy</button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 controls-container">
+                                    <div>
+                                        <div class="control-label">
+                                            Progress :
+                                        </div>
+                                        <div class="control-widget">
+                                            <input id="scsProgressSlider" data-slider-id='scsProgressSlider' type="text" data-slider-tooltip="hide" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="control-label">
+                                            Segments :
+                                        </div>
+                                        <div class="control-widget">
+                                            <input id="scsSegmentsSlider" data-slider-id='scsSegmentsSlider' type="text" data-slider-tooltip="hide" data-slider-min="1" data-slider-max="10" data-slider-step="1" data-slider-value="3"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="control-label">
+                                            Label :
+                                        </div>
+                                        <div class="control-widget">
+                                            <div class="btn-group" role="group" aria-label="...">
+                                                <input type="checkbox" id="scsLabelToggle">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default center-block text-center">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Circular Progress Bar</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    
+                                    <div id="circularbar-svg-container">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <input  id="cpbVizURL" type="text" class="form-control" placeholder="url">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-secondary" data-clipboard-target="#cpbVizURL" type="button">Copy</button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 controls-container">
+                                    <div>
+                                        <div class="control-label">
+                                            Progress :
+                                        </div>
+                                        <div class="control-widget">
+                                            <input id="cpbProgressSlider" data-slider-id='cpbProgressSlider' type="text" data-slider-tooltip="hide" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="control-label">
+                                            Segments :
+                                        </div>
+                                        <div class="control-widget">
+                                            <input id="cpbSegmentsSlider" data-slider-id='cpbSegmentsSlider' type="text" data-slider-tooltip="hide" data-slider-min="1" data-slider-max="10" data-slider-step="1" data-slider-value="3"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="control-label">
+                                            Label :
+                                        </div>
+                                        <div class="control-widget">
+                                            <div class="btn-group" role="group" aria-label="...">
+                                                <input type="checkbox" id="cpbLabelToggle">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="control-label">
+                                            Color :
+                                        </div>
+                                        <div class="control-widget">
+                                            <select id="cpbColorselector">
+                                                <option value="106" data-color="#731f61" selected="selected">Dark Magenta</option>
+                                                <option value="47" data-color="#CD5C5C" >indianred</option>
+                                                <option value="87" data-color="#FF4500">orangered</option>
+                                                <option value="15" data-color="#DC143C">crimson</option>
+                                                <option value="24" data-color="#FF8C00">darkorange</option>
+                                                <option value="78" data-color="#C71585">mediumvioletred</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+
+                new Clipboard('.btn');
+
+                var scsProgressSlider = $('#scsProgressSlider').slider()
+                    .on('change', function(data){
+                        updateSemiCircularSpeedometers() 
+                    })
+
+                var scsSegmentsSlider = $('#scsSegmentsSlider').slider()
+                    .on('change', function(data){
+                        updateSemiCircularSpeedometers() 
+                    })
+                
+                var scsLabelToggle = $('#scsLabelToggle').change(function() {
+                    updateSemiCircularSpeedometers();
+                });
+
+                
+
+                function updateSemiCircularSpeedometers(){
+
+                    var progress = scsProgressSlider.slider('getValue');
+                    var segments = scsSegmentsSlider.slider('getValue');
+                    var label = scsLabelToggle.is(':checked');
+
+                    var params = {
+                        progress,
+                        segments,
+                        label
+                    }
+
+                    hiddenParams = function(object) {
+                        var str = "";
+                        for (var index in object) str = str + index + "=" + object[index] + "&";
+                        return str.substring(0, str.length - 1);
+                    }(params);
+
+                    $("#scsVizURL").val("http://localhost:5000/viz/speedometer?" + hiddenParams)
+
+                    $.get( "http://localhost:5000/viz/speedometer"
+                        ,params
+                        , function( data ) {
+                            $('#speedometer-svg-container').empty();
+                            $("svg", data).prependTo('#speedometer-svg-container');
+                        
+                            //console.log($('#speedometer-svg-container'));
+                            //$('#speedometer-svg-container').appendTo( data );
+                        }
+                        ,'xml')
+                    
+                }
+
+                updateSemiCircularSpeedometers()
+
+
+
+                $('#cpbColorselector').colorselector({
+                    callback: function (value, color, title) {
+                        updateCircularProgressBar() 
+                    }
+                });
+
+                var cpbProgressSlider = $('#cpbProgressSlider').slider()
+                    .on('change', function(data){
+                        updateCircularProgressBar() 
+                    })
+
+                var cpbSegmentsSlider = $('#cpbSegmentsSlider').slider()
+                    .on('change', function(data){
+                        updateCircularProgressBar() 
+                    })
+                
+                var cpbLabelToggle = $('#cpbLabelToggle').change(function() {
+                    updateCircularProgressBar();
+                });
+
+            
+
+                function updateCircularProgressBar(){
+
+                    var progress = cpbProgressSlider.slider('getValue');
+                    var segments = cpbSegmentsSlider.slider('getValue');
+                    var label = cpbLabelToggle.is(':checked');
+                    var color = $('#cpbColorselector option:selected').attr('data-color')
+
+
+                    var params = {
+                        progress,
+                        segments,
+                        label,
+                        color
+                    }
+
+                    hiddenParams = function(object) {
+                        var str = "";
+                        for (var index in object) str = str + index + "=" + object[index] + "&";
+                        return str.substring(0, str.length - 1);
+                    }(params);
+
+                    $("#cpbVizURL").val("http://localhost:5000/viz/circular?" + hiddenParams)
+
+                    $.get( "http://localhost:5000/viz/circular"
+                        ,params
+                        , function( data ) {
+                            $('#circularbar-svg-container').empty();
+                            $("svg", data).prependTo('#circularbar-svg-container');
+                        }
+                        ,'xml')
+                    
+                }
+
+                updateCircularProgressBar()
+
+            });
+
+        </script>
+
+    </body>
+</html>

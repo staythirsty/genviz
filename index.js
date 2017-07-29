@@ -1,7 +1,12 @@
-var http = require('http');
+var express = require('express')
+var vizualizer = require('./routers/vizualizer')
 
-var server = http.createServer(function(req, res) {
-  res.writeHead(200);
-  res.end('Hello Http');
-});
-server.listen(process.env.PORT || 5000);
+var app = express();
+
+app.use(express.static('public'))
+
+app.use('/viz', vizualizer)
+
+app.listen(5000, function () {
+  console.log('listening on port 5000!')
+})
