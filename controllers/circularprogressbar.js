@@ -9,7 +9,6 @@ function generate(window,params){
     var colorArray = jsgradient.generateGradient('#DCC7D7','#731f61', params.segments);
     var progressValue = params.progress
     var progressSegment = Math.floor(params.segments * progressValue * 0.01);
-    console.log(progressSegment)
     //var degreeValue = 180 * (params.progress - 50) / 100; 
 
     var config = {
@@ -83,8 +82,6 @@ function generate(window,params){
     }
 
     var finalSegmentLength = 2 * Math.PI * ( (progressValue * 0.01) - (config.arcs.segments/config.baseArcs.segments) )
-
-    console.log(finalSegmentLength);
     
     if(finalSegmentLength > 0) {
         segment = {};

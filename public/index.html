@@ -215,9 +215,9 @@
                         return str.substring(0, str.length - 1);
                     }(params);
 
-                    $("#scsVizURL").val("http://localhost:5000/viz/speedometer?" + hiddenParams)
+                    $("#scsVizURL").val("/viz/speedometer?" + hiddenParams)
 
-                    $.get( "http://localhost:5000/viz/speedometer"
+                    $.get( "/viz/speedometer"
                         ,params
                         , function( data ) {
                             $('#speedometer-svg-container').empty();
@@ -277,9 +277,9 @@
                         return str.substring(0, str.length - 1);
                     }(params);
 
-                    $("#cpbVizURL").val("http://localhost:5000/viz/circular?" + hiddenParams)
+                    $("#cpbVizURL").val("/viz/circular?" + hiddenParams)
 
-                    $.get( "http://localhost:5000/viz/circular"
+                    $.get( "/viz/circular"
                         ,params
                         , function( data ) {
                             $('#circularbar-svg-container').empty();
