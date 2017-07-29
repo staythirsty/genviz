@@ -215,7 +215,11 @@
                         return str.substring(0, str.length - 1);
                     }(params);
 
-                    $("#scsVizURL").val("/viz/speedometer?" + hiddenParams)
+
+                    var getUrl = window.location;
+                    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
+                    $("#scsVizURL").val(baseUrl + "viz/speedometer?" + hiddenParams)
 
                     $.get( "/viz/speedometer"
                         ,params
@@ -277,7 +281,10 @@
                         return str.substring(0, str.length - 1);
                     }(params);
 
-                    $("#cpbVizURL").val("/viz/circular?" + hiddenParams)
+                    var getUrl = window.location;
+                    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
+                    $("#cpbVizURL").val(baseUrl + "viz/circular?" + hiddenParams)
 
                     $.get( "/viz/circular"
                         ,params
