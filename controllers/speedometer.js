@@ -28,8 +28,19 @@ function calcSemiArcMarker(cx,cy,r,sangle){
 	return path;
 }
 
+function validateAndFixInputs(params){
+
+    params.segments = params.segments < 1 ? 1:params.segments
+ 
+    params.progress = params.progress < 0 ? 0 : params.progress
+    params.progress = params.progress > 100 ? 100 : params.progress
+}
+
+
 function generate(window,params){
 
+    validateAndFixInputs(params)
+    
     //init
     var colorArray = jsgradient.generateGradient('#DCC7D7','#731f61', params.segments);
 

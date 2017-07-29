@@ -48,17 +48,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-
                                     <div id="speedometer-svg-container">
                                     </div>
-
-                                    <div class="input-group">
-                                        <input  id="scsVizURL" type="text" class="form-control" placeholder="url">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-secondary" data-clipboard-target="#scsVizURL" type="button">Copy</button>
-                                        </span>
-                                    </div>
-
                                 </div>
                                 <div class="col-lg-6 controls-container">
                                     <div>
@@ -92,6 +83,12 @@
                             </div>
                         </div>
                         <div class="panel-footer">
+                            <div class="input-group">
+                                <input  id="scsVizURL" type="text" class="form-control" placeholder="url">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" data-clipboard-target="#scsVizURL" type="button">Copy</button>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
@@ -111,13 +108,6 @@
                                 <div class="col-lg-6">
                                     
                                     <div id="circularbar-svg-container">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <input  id="cpbVizURL" type="text" class="form-control" placeholder="url">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-secondary" data-clipboard-target="#cpbVizURL" type="button">Copy</button>
-                                        </span>
                                     </div>
 
                                 </div>
@@ -168,6 +158,12 @@
                             </div>
                         </div>
                         <div class="panel-footer">
+                            <div class="input-group">
+                                <input  id="cpbVizURL" type="text" class="form-control" placeholder="url">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" data-clipboard-target="#cpbVizURL" type="button">Copy</button>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
@@ -195,7 +191,14 @@
                     updateSemiCircularSpeedometers();
                 });
 
-                
+                function jsonToURLParams(object){
+
+                        var str = "";
+                        for (var index in object) str = str + index + "=" + escape(object[index]) + "&";
+
+                        return str.substring(0, str.length - 1);
+
+                }
 
                 function updateSemiCircularSpeedometers(){
 
@@ -209,11 +212,7 @@
                         label
                     }
 
-                    hiddenParams = function(object) {
-                        var str = "";
-                        for (var index in object) str = str + index + "=" + object[index] + "&";
-                        return str.substring(0, str.length - 1);
-                    }(params);
+                    hiddenParams = jsonToURLParams(params);
 
 
                     var getUrl = window.location;
@@ -275,11 +274,8 @@
                         color
                     }
 
-                    hiddenParams = function(object) {
-                        var str = "";
-                        for (var index in object) str = str + index + "=" + object[index] + "&";
-                        return str.substring(0, str.length - 1);
-                    }(params);
+                    hiddenParams = jsonToURLParams(params);
+
 
                     var getUrl = window.location;
                     var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];

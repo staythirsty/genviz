@@ -3,12 +3,23 @@ var d3 = require("d3");
 var d3Shape =  require("d3-shape");
 var jsgradient = require('../utilities/jsgradient');
 
+function validateAndFixInputs(params){
+
+    params.segments = params.segments < 1 ? 1:params.segments
+ 
+    params.progress = params.progress < 0 ? 0 : params.progress
+    params.progress = params.progress > 100 ? 100 : params.progress
+}
+
 function generate(window,params){
+
+    validateAndFixInputs(params)
 
     //init
     var colorArray = jsgradient.generateGradient('#DCC7D7','#731f61', params.segments);
     var progressValue = params.progress
     var progressSegment = Math.floor(params.segments * progressValue * 0.01);
+    var arcOffset = params.segments == 1 ? 0 : 0.02
     //var degreeValue = 180 * (params.progress - 50) / 100; 
 
     var config = {
@@ -18,7 +29,8 @@ function generate(window,params){
             outerRadius: 100,
             stroke: 'lightgrey',
             strokeWidth:'1',
-            fill: "lightgrey"
+            fill: "lightgrey",
+            offset: arcOffset
         },
         arcs : {
             segments : progressSegment,
@@ -26,7 +38,8 @@ function generate(window,params){
             outerRadius: 100,
             stroke: params.color,
             strokeWidth:'1',
-            fill: params.color
+            fill: params.color,
+            offset: arcOffset
         },
         label: {
             display : params.label,
@@ -51,7 +64,7 @@ function generate(window,params){
                 .innerRadius(config.baseArcs.innerRadius)
                 .outerRadius(config.baseArcs.outerRadius)
                 .startAngle(currentAngle)
-                .endAngle(currentAngle + segmentLength - 0.02)
+                .endAngle(currentAngle + segmentLength - config.baseArcs.offset)
         
         segment.stroke = config.baseArcs.stroke;
         segment.strokeWidth = config.baseArcs.strokeWidth;
@@ -70,7 +83,7 @@ function generate(window,params){
                 .innerRadius(config.arcs.innerRadius)
                 .outerRadius(config.arcs.outerRadius)
                 .startAngle(currentAngle)
-                .endAngle(currentAngle + segmentLength - 0.02)
+                .endAngle(currentAngle + segmentLength - config.arcs.offset)
         
         segment.stroke = config.arcs.stroke;
         segment.strokeWidth = config.arcs.strokeWidth;
